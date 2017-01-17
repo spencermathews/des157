@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+
+
+body {
+  /*quirk body background floods page unless also set in html*/
+  background: #00BCD4;
+  color: #212121;
+}
+
+a:link {
+  color: #FFFFFF
+}
+a:visited {
+  color: #757575
+}
+a:hover{}
+
+/*.dark-primary-color    { background: #0097A7; }
+.default-primary-color { background: #00BCD4; }
+.light-primary-color   { background: #B2EBF2; }
+.text-primary-color    { color: #FFFFFF; }
+.accent-color          { background: #7C4DFF; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }*/
+
+
+header {
+  /*text-align: center; this alone will also center canvas*/
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+}
+
+nav {
+  background: #0097A7
+}
+
+.left {
+  float: left;
+  width: 33%;
+}
+
+h2 {
+  text-align: center;
+}
+
+footer {
+  clear: left;
+  text-align: center;
+}
+
+
+* {
+  border: thin solid red;
+}
