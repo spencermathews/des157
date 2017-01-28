@@ -1,20 +1,24 @@
 @charset "UTF-8";
-
-
-
 body {
   /*quirk body background floods page unless also set in html*/
   background: #00BCD4;
   color: #212121;
 }
 
+a {
+  text-decoration: none;
+}
+
 a:link {
   color: #FFFFFF
 }
+
 a:visited {
   color: #757575
 }
-a:hover{}
+
+a:hover {}
+
 
 /*.dark-primary-color    { background: #0097A7; }
 .default-primary-color { background: #00BCD4; }
@@ -24,7 +28,6 @@ a:hover{}
 .primary-text-color    { color: #212121; }
 .secondary-text-color  { color: #757575; }
 .divider-color         { border-color: #BDBDBD; }*/
-
 
 header {
   /*text-align: center; this alone will also center canvas*/
@@ -36,10 +39,11 @@ canvas {
 }
 
 nav {
-  background: #0097A7
+  text-align: center;
+  background: #0097A7;
 }
 
-.left {
+.left-3 {
   float: left;
   width: 33%;
 }
@@ -48,12 +52,25 @@ h2 {
   text-align: center;
 }
 
+ul {
+  list-style: none;
+}
+
 footer {
   clear: left;
   text-align: center;
 }
 
 
-* {
+/** {
   border: thin solid red;
+}*/
+
+@media (max-width: 1024px) {
+  /*.container {
+    padding: 6vw 3vw;
+  }*/
+  .left-3 {
+    width: 100%;
+  }
 }

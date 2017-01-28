@@ -9,7 +9,7 @@ function draw() {
   background(0);
   noFill();
   stroke(255);
-  for(var i = 0; i<min(width,height); i+=20) {
-    ellipse(width/2, height/2, i, i);
+  for (var i = 0; i < min(width, height); i += 20) {
+    ellipse(width / 2, height / 2, i, i);
   }
 }
