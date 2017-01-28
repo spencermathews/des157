@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ch 3</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px
+    }
+
+    body {
+      font-family: Verdana, Geneva, sans-serif;
+      color: white;
+      background-color: #333;
+      font-size: 11px;
+      margin: 24px;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Ch 13 / The Cat's Hat</h1>
+
+  <p style="text-align: center">
+    <img id="cat" src="https://cdn.rawgit.com/marijnh/Eloquent-JavaScript/e11898e6/img/cat.png" style="position: absolute" alt="cat">
+    <img id="hat" src="https://cdn.rawgit.com/marijnh/Eloquent-JavaScript/e11898e6/img/hat.png" style="position: absolute" alt="hat">
+  </p>
+
+  <script>
+    var cat = document.querySelector("#cat");
+    var hat = document.querySelector("#hat");
+
+    var angle = 0,
+      lastTime = null;
+
+    function animate(time) {
+      if (lastTime != null)
+        angle += (time - lastTime) * 0.001;
+
+      lastTime = time;
+
+      cat.style.top = (Math.sin(angle) * 20) + "px";
+      cat.style.left = (Math.cos(angle) * 200) + "px";
+
+      hat.style.top = (Math.sin(angle + Math.PI) * 20) + "px";
+      hat.style.left = (Math.cos(angle + Math.PI) * 200) + "px";
+
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+
+  <ul>
+    <li>add hat image and add ids for selection</li>
+    <li>change to absolute positioning</li>
+  </ul>
+
+</body>
+
+</html>
