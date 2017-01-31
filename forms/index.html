@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Forms</title>
+  <!-- <link rel="stylesheet" href="default.css" /> -->
+  <!-- <script src="script.js"></script> -->
+</head>
+
+<body>
+
+  <header>
+    <h1>HTML Forms</h1>
+  </header>
+
+  <main>
+
+
+
+    <form id="form">
+      <label for="text">Text Here</label>
+      <input type=text name="text" placeholder="value here">
+
+
+      <output>
+
+      </output>
+
+      <!-- easy way to reset -->
+      <!-- <button type="reset">Reset</button> -->
+      <!-- manual way to reset, see function below, also note that type="button" is deprecated for button tag-->
+      <input type="button" onclick="myFunction()" value="Reset form">
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      // this might be old way?
+      var form = document.querySelector("form");
+      form.addEventListener("submit", function(event) {
+        console.log("Saving value", form.elements.value.value);
+        event.preventDefault();
+      });
+
+
+      function myFunction() {
+        document.getElementById("form").reset();
+      }
+    </script>
+
+    <br>
+
+
+    <form id="glenda">
+
+      <fieldset>
+        <legend>Cats</legend>
+        <input name="kind" type="radio" value="feline">
+        <label for="kind">feline</label>
+        <br>
+        <input name="kind" type="radio" value="canine">
+        <label>canine</label>
+        <br>
+        <input name="kind" type="radio" value="humine">
+        <label>humine</label>
+      </fieldset>
+
+      <label>Choose a browser from this list:
+        <input list="browsers" name="myBrowser">
+        <datalist id="browsers">
+          <option value="Chrome">
+          <option value="Firefox">
+          <option value="Internet Explorer">
+          <option value="Opera">
+          <option value="Safari">
+          <option value="Microsoft Edge">
+        </datalist>
+    </label>
+
+    </form>
+
+    <br>
+
+    <form id="myForm" oninput="output.value=food.value">
+      <textarea id="myStuff">
+      one
+      two
+      three
+      </textarea>
+
+      <label for="food">Pick food</label>
+      <input type="text" name="food" list=foodList>
+      <datalist id="foodList">
+        <!-- <select id="suggestion" name="altFood"> -->
+          <option value="burrito">
+          <option value="taco">
+          <option value="horchata">
+
+        <!-- </select> -->
+      </datalist>
+
+
+      <select id="foodSelect">
+        <option>Pancakes</option>
+        <option>Pudding</option>
+        <option>Ice cream</option>
+      </select>
+
+      <!-- easy way to reset -->
+      <!-- <button type="reset">Reset</button> -->
+      <!-- manual way to reset, see function below, also note that type="button" is deprecated for button tag-->
+      <input type="button" onclick="myFunction()" value="Reset form">
+
+      <button type="submit">Submit</button>
+
+      <output name="output"></output>
+    </form>
+
+
+
+
+
+
+  </main>
+
+  <footer>
+    <br>
+    <a href="https://validator.w3.org/check?uri=referer&showsource=yes&showoutline=yes">Nu HTML Checker</a>
+    <br>
+    <a href="https://jigsaw.w3.org/css-validator/check/referer">CSS Validation Service</a>
+    <br>
+    <a href="https://validator.w3.org/unicorn/check?ucn_uri=referer&ucn_task=conformance" title="HTML+CSS+RSS">Unicorn Unified Validator</a>
+    <!-- <a href="https://validator.w3.org/unicorn/check?ucn_uri=referer&tests=valnu&tests=css-validator&ucn_task=custom" title="HTML+CSS">Unicorn Unified Validator</a> -->
+  </footer>
+
+</body>
+
+</html>
