@@ -11,51 +11,61 @@
 <body>
 
   <header>
-    <h1>HTML Forms</h1>
+    <h1 id="h1">HTML Forms</h1>
   </header>
 
   <main>
 
 
+    <form name="form">
+      <label for="text">Label</label>
+      <input type=text name="text" placeholder="placeholder">
 
-    <form id="form">
-      <label for="text">Text Here</label>
-      <input type=text name="text" placeholder="value here">
+      // note, if using old input button labe is used
+      <button type="reset">Reset</button>
+      <button type="submit">Submit</button>
 
-
-      <output>
+      <output name="output">
 
       </output>
 
-      <!-- easy way to reset -->
-      <!-- <button type="reset">Reset</button> -->
-      <!-- manual way to reset, see function below, also note that type="button" is deprecated for button tag-->
-      <input type="button" onclick="myFunction()" value="Reset form">
-
-      <button type="submit">Submit</button>
     </form>
 
+    <div id="output" display="none"></div>
+
     <script>
-      // this might be old way?
-      var form = document.querySelector("form");
-      form.addEventListener("submit", function(event) {
-        console.log("Saving value", form.elements.value.value);
+      // can actually reference id's directly without this extra step
+      var output = document.querySelector("#output");
+      // form.addEventListener("submit", outputMethod(event));
+      // document.form.onsubmit = function(event) {}
+      document.form.addEventListener("submit", function(event) {
+        // note: form.elements.text.value seems to equal form.text.value!?
+        // where is that documented?
+        console.log("Saving value", form.text.value);
+
+        output.innerHTML = form.text.value;
+        output.style.display = "block";
+
+        // both return false and event.preventDefault() work
+        // return false;
         event.preventDefault();
       });
 
-
-      function myFunction() {
-        document.getElementById("form").reset();
-      }
+      document.form.addEventListener("reset", function(event) {
+        console.log("Resetting form");
+        output.style.display = "none";
+        output.innerHTML = "";
+        // no need to event.preventDefault()/stopPropagation() or return false; for reset
+      });
     </script>
 
-    <br>
 
 
     <form id="glenda">
+      Some of Glenda's ideas and more.<br>
 
       <fieldset>
-        <legend>Cats</legend>
+        <legend>Fieldset Legend</legend>
         <input name="kind" type="radio" value="feline">
         <label for="kind">feline</label>
         <br>
@@ -67,7 +77,7 @@
       </fieldset>
 
       <label>Choose a browser from this list:
-        <input list="browsers" name="myBrowser">
+        <input type="text" list="browsers" name="myBrowser">
         <datalist id="browsers">
           <option value="Chrome">
           <option value="Firefox">
@@ -76,31 +86,34 @@
           <option value="Safari">
           <option value="Microsoft Edge">
         </datalist>
-    </label>
+      </label>
 
+      <output name="output"></output>
     </form>
 
-    <br>
+    <script>
+      // function(event) {}
+    </script>
+
 
     <form id="myForm" oninput="output.value=food.value">
+      My own messing around<br>
+
       <textarea id="myStuff">
       one
       two
       three
       </textarea>
 
-      <label for="food">Pick food</label>
+      <label for="food">List food</label>
       <input type="text" name="food" list=foodList>
       <datalist id="foodList">
-        <!-- <select id="suggestion" name="altFood"> -->
-          <option value="burrito">
-          <option value="taco">
-          <option value="horchata">
-
-        <!-- </select> -->
+        <option value="burrito">
+        <option value="taco">
+        <option value="horchata">
       </datalist>
 
-
+      <label for="foodSelect">Select food</label>
       <select id="foodSelect">
         <option>Pancakes</option>
         <option>Pudding</option>
@@ -118,7 +131,25 @@
     </form>
 
 
+    <form id="buttonForm" onsubmit>
+      How to use button onclick to call a function and, in this case, reset form.<br>
 
+      <label for="text">Label</label>
+      <input type="text" name="text" placeholder="placeholder">
+
+      <!-- manual way to reset, see function below, also note that type="button" is deprecated for button tag-->
+      <input type="button" onclick="clickCallback()" value="Click">
+    </form>
+
+    <script>
+      // here should register the callback with js instead of onclick!
+
+
+      function clickCallback() {
+        // document.getElementById("buttonForm").reset();
+        document.querySelector("form").reset();
+      }
+    </script>
 
 
 
