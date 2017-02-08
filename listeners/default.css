@@ -1,0 +1,19 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+section {
+  display: block;
+  width: 50vw;
+  height: 50vh;
+  /*  */
+  border: red solid;
+}
+
+div {
+  width: 50%;
+  height: 50%;
+  border: green solid;
+}
