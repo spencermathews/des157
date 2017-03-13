@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Ch 3</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px
+    }
+
+    body {
+      font-family: Verdana, Geneva, sans-serif;
+      color: white;
+      background-color: #333;
+      font-size: 11px;
+      margin: 24px;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Ch 3 / Looping a Triangle</h1>
+
+  <script>
+    var s;
+
+    s = '';
+    for (var i = 0; i < 7; i++) {
+      s = s.concat('#');
+      console.log(s);
+    }
+
+    s = '';
+    while (s.length < 7) {
+      s += '#';
+      console.log(s);
+    }
+
+    for (i = "#"; i.length < 8; i += "#")
+      console.log(i);
+  </script>
+
+</body>
+
+</html>
