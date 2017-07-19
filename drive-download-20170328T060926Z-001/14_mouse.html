@@ -1,0 +1,173 @@
+<!--NOTE: Replace all of the uppercase text from glenda with your own custom content-->
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Eloquent JavaScript</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px
+        }
+        
+        body {
+            font-family: Verdana, Geneva, sans-serif;
+            color: white;
+            background-color: #333;
+            font-size: 11px;
+            margin: 24px;
+        }
+        
+        h1 {
+            margin-bottom: 24px;
+        }
+        
+        .trail {
+            /* className for the trail elements */
+            position: absolute;
+            height: 6px;
+            width: 6px;
+            border-radius: 3px;
+            background: teal;
+        }
+        
+        .particle {
+            /* className for the particle elements */
+            position: absolute;
+            height: 4px;
+            width: 4px;
+            border-radius: 2px;
+            background: red;
+        }
+    </style>
+    <script>
+        // length of trail
+        var n = 2;
+
+        // array to store trail elements so positions can be updated
+        var trail = [];
+        // current index into trail array
+        var i = 0;
+
+        // create n trail elements
+        for (let i = 0; i < n; i++) {
+            //            console.log(i);
+            trail[i] = document.createElement("div");
+            trail[i].className = "trail";
+            //            trail[i].style.left = "100px";
+            //            trail[i].style.top = "100px";
+        }
+
+        addEventListener("mousemove", function (event) {
+            //            console.log(event.pageX, event.pageY);
+            trail[i].style.left = (event.pageX - 3) + "px";
+            trail[i].style.top = (event.pageY - 3) + "px";
+            // it's not obvious but repeatedly appending the same element
+            // does not cause duplicates, can add elsewhere
+            // but must ensure DOM is loaded
+            // is there a clever way? maybe just test if trail==null and create elements in callback the first time it's called?
+            document.body.appendChild(trail[i]);
+            i = (i + 1) % n;
+        });
+    </script>
+
+</head>
+
+<body>
+    <h1> Eloquent JavaScript // Ch 14 Mouse Trail</h1>
+
+    <p>
+        Combined the code given in the problem with the mouse clicks / drawing code which adds a nonspecific click eventListener.Review the official answer!
+    </p>
+    <p>Note that some details are glossed over here. Review pageX/Y coordinates (document?) and how to retrieve the coordinates of an element</p>
+
+    <div id='anim'></div>
+
+    <script>
+        // set easing [0,1], larger is faster
+        var easing = 0.5; //0.05;
+
+        // number of particles
+        var m = 1;
+        // array to store trail elements so positions can be updated
+        var particles = [];
+        // current index into trail array
+        //        var j = 0;
+
+        // create m particle elements
+        for (let i = 0; i < m; i++) {
+            console.log("element", i);
+            particles[i] = document.createElement("div");
+            particles[i].className = "particle";
+            //            particles[i].style.left = "200px";
+            //            particles[i].style.top = "200px";
+            document.body.appendChild(particles[i]); // if script in head must make sure document exists
+        }
+
+        // vars to track mouse position, named as per Processing
+        var mouseX;
+        var mouseY;
+        addEventListener("mousemove", function (event) {
+            // set variables to mouse position when mouse is moved
+            mouseX = event.pageX;
+            mouseY = event.pageY;
+        });
+
+        // animation function, named as per Processing
+        function draw(timestamp) {
+            
+            // update position of each particle
+            for (let i = 0; i < m; i++) {
+                // ... explore position stuff
+                // correct!? : getBoundingClientRect().top/left <- relative to viewport!
+                // offsetLeft/Top <- relative to container!? appears to be 0 if element hasn't been inserted in DOM, even if style.left/top has been set
+                // clientLeft/Top
+                // scrollLeft/Top (window?)
+
+                var x = particles[i].offsetLeft + 2;
+                var y = particles[i].offsetTop + 2;
+                console.log("draw");
+                console.log("x y", x, y);
+                var dx = mouseX - x;
+                var dy = mouseY - y;
+                x += dx * easing;
+                y += dy * easing;
+//                x = mouseX;
+//                y = mouseY;
+
+                console.log(mouseX, mouseY);  // undefined until move mouse
+                console.log(dx, dy);  // NaN until move mouse
+                console.log(x, y);
+                
+                particles[i].style.left = x - 2 + "px";
+                particles[i].style.top = y - 2 + "px";
+
+                document.body.appendChild(particles[i]);
+            }
+            window.requestAnimationFrame(draw);
+        }
+        window.requestAnimationFrame(draw);
+
+
+
+        var start = null;
+        var element = document.getElementById('anim');
+        element.style.position = 'absolute';
+        element.style.width = '20px';
+        element.style.height = '20px';
+        element.style.left = '200px';
+        element.style.top = '200px';
+        element.style.background = 'purple';
+
+        function step(timestamp) {
+            if (!start) start = timestamp;
+            var progress = timestamp - start;
+            element.style.left = Math.min(progress / 10, 200) + 'px';
+            if (progress < 2000) {
+                window.requestAnimationFrame(step);
+            }
+        }
+        window.requestAnimationFrame(step);
+    </script>
+</body>
